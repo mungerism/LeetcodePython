@@ -20,7 +20,6 @@ class Solution:
         left = 0
         right = 0
         dic = {}
-        sub_len = 0
         while right < len(s):
             right_value = s[right]
             if dic.has_key(right_value) and dic[right_value] >= left:
