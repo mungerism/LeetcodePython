@@ -28,13 +28,15 @@ class Solution:
                 max_len = max(max_len, sub_len)
                 left = dic[right_value] + 1
                 dic[right_value]=right
-            else:
-                dic[s[right]]=right
                 right += 1
-        sub_len = right - left
+            else:
+                dic[right_value]=right
+                right += 1
+                sub_len = right - left
+                max_len = max(max_len, sub_len)
 
         return max(max_len, sub_len)
 
 if __name__ == '__main__':
     solution = Solution()
-    print solution.lengthOfLongestSubstring('aab')
+    print solution.lengthOfLongestSubstring('abcabcbb')
