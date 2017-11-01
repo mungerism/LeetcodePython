@@ -23,18 +23,18 @@ class Solution:
         sub_len = 0
         while right < len(s):
             right_value = s[right]
-            if dic.has_key(right_value) and dic[s[]] > left:
+            if dic.has_key(right_value) and dic[right_value] >= left:
                 sub_len = right - left
                 max_len = max(max_len, sub_len)
-                left = dic(s[right]) + 1
-                dic[s[right]]=right
+                left = dic[right_value] + 1
+                dic[right_value]=right
             else:
                 dic[s[right]]=right
                 right += 1
-        # sub_len = right - left
+        sub_len = right - left
 
-        return max_len
+        return max(max_len, sub_len)
 
 if __name__ == '__main__':
     solution = Solution()
-    print solution.lengthOfLongestSubstring('abca')
+    print solution.lengthOfLongestSubstring('aab')
