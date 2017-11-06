@@ -43,11 +43,7 @@ if __name__ == '__main__':
 """
 class Solution(object):
     def lengthOfLongestSubstring(self, s):
-        """
-
-        :param s:
-        :return:
-        """
+      
         left = 0
         right = 0
         dict = {}

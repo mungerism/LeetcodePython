@@ -38,7 +38,6 @@ class Solution(object):
                     head_node2 = ListNode(0)
 
             total = head_node1.val + head_node2.val + add
-
             new_node = ListNode(total % 10)
 
             if is_head:
