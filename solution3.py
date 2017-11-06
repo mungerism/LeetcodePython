@@ -20,7 +20,6 @@ class Solution:
         left = 0
         right = 0
         dic = {}
-        sub_len = 0
         while right < len(s):
             right_value = s[right]
             if dic.has_key(right_value) and dic[right_value] >= left:
@@ -40,3 +39,31 @@ class Solution:
 if __name__ == '__main__':
     solution = Solution()
     print solution.lengthOfLongestSubstring('abcabcbb')
+    
+"""
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+
+        :param s:
+        :return:
+        """
+        left = 0
+        right = 0
+        dict = {}
+        max_length = 0
+        for i in range(len(s)):
+            right = i
+            right_value = s[i]
+            if dict.has_key(right_value) and dict[right_value]>= left:
+                left = dict[right_value]+1
+            dict[right_value] = i
+            sub_length = right+1-left
+            max_length = max(sub_length,max_length)
+        return max_length
+
+if __name__ == '__main__':
+    solution = Solution()
+    max_length = solution.lengthOfLongestSubstring('abcabcbb')
+    print(max_length)
+"""
