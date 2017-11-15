@@ -44,3 +44,27 @@ if __name__ == '__main__':
     grid = [[1, 3, 1], [1, 5, 1], [4, 2, 1]]
     solution = Solution()
     print(solution.minPathSum(grid))
+"""宝宝写的
+class Solution:
+    def minPathSum(self, grid):
+      
+        height = len(grid)
+        width  = len(grid[0])
+        arr = [[0 for x in range(width)] for y in range(height)]
+        for h in range(height):
+            for w in range(width):
+                if h == 0 and w==0:
+                    arr[h][w] = grid[0][0]
+                elif h==0 and w > 0:
+                    print("w", w, "h", h)
+                    arr[h][w] = grid[h][w]+arr[h][w-1]
+                elif w == 0 and h > 0:
+                    arr[h][w] = grid[h][w]+arr[h-1][w]
+                else:
+                    arr[h][w] = grid[h][w]+min(arr[h][w-1],arr[h-1][w])
+        return (arr[height-1][width-1])
+if __name__ == '__main__':
+    solution = Solution()
+    arr = [[1,2,5],[3,2,1]]
+    solution.minPathSum(arr)
+"""
