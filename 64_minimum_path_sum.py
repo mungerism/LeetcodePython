@@ -20,11 +20,11 @@ class Solution:
         """
 
         height = len(grid)
-        weight = len(grid[0])
+        width = len(grid[0])
 
-        optimal_matrix = [[0 for x in range(weight)] for y in range(height)]
+        optimal_matrix = [[0 for x in range(width)] for y in range(height)]
 
-        for w in range(weight):
+        for w in range(width):
             for h in range(height):
 
                 if w == 0 or h == 0:
@@ -37,7 +37,7 @@ class Solution:
                 else:
                     optimal_matrix[h][w] = min(optimal_matrix[h - 1][w], optimal_matrix[h][w - 1]) + grid[h][w]
 
-        return optimal_matrix[height - 1][weight - 1]
+        return optimal_matrix[height - 1][width - 1]
 
 if __name__ == '__main__':
 
