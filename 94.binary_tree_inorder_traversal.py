@@ -76,4 +76,4 @@ if __name__ == '__main__':
     node2.right = node6
 
     solution = Solution()
-    solution.inorderTraversal([])
+    solution.inorderTraversal(root)
