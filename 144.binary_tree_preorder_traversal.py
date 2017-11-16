@@ -47,8 +47,8 @@ class Solution:
                     stack.append(current_node)
                     result.append(current_node.val)
                     current_node = current_node.left
-                current_node = stack.pop()
 
+                current_node = stack.pop()
                 if current_node.right:
                     current_node = current_node.right
                 else:
