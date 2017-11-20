@@ -87,3 +87,31 @@ if __name__ == '__main__':
 
     solution = Solution()
     solution.levelOrder(root)
+
+    """宝宝写的
+    class Solution:
+    def levelOrder(self, root):
+     
+        if root == None:
+            return []
+        else:
+            queue = [root]
+            result = []
+            while(queue):
+                sub_queue = []
+                tmp = []
+                for i in queue:
+                    tmp.append(i.val)
+                result.append(tmp)
+                while (queue):
+                    if queue[0].left:
+                        sub_queue.append(queue[0].left)
+                        # tmp.append(queue[0].left.val)
+                    if queue[0].right:
+                        sub_queue.append((queue[0].right))
+                        # tmp.append(queue[0].right.val)
+                    del queue[0]
+                queue = sub_queue
+            # print(result)
+            return (result)
+    """
