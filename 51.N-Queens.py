@@ -24,6 +24,31 @@ There exist two distinct solutions to the 4-queens puzzle:
 """
 
 class Solution:
+
+
+    def isValid(self, c, r, board):
+        for i in range(c, -1, -1):
+            if board[i][r] == 'Q':
+                return False
+
+        i = c
+        j = r
+        while i >= 0 and j >= 0:
+            if board[i][j] == 'Q':
+                return False
+            i -= 1
+            j -= 1
+
+        i = c
+        j = r
+        while i >= 0 and j < len(board[0]):
+            if board[i][j] == 'Q':
+                return False
+            i -= 1
+            j += 1
+
+        return True
+
     def solveNQueens(self, n):
         """
         :type n: int
@@ -36,13 +61,15 @@ class Solution:
 
         c = 0
         r = 0
+        hasSolution = True
 
-        while True:
-            while c < n:
+        while hasSolution:
+
+            while c < n and c > -1:
 
                 while r < n or back_tracking[c] == -1:
 
-                    if  r < n and isValid(c, r, board):
+                    if  r < n and self.isValid(c, r, board):
                         board[c][r] = 'Q'
                         back_tracking[c] = r
                         break
@@ -50,42 +77,33 @@ class Solution:
                         r += 1
                         if r >= n:
                             c = c - 1
+
+                            if c == -1:
+                                hasSolution = False
+                                break
+
                             board[c][back_tracking[c]] = '.'
                             r = back_tracking[c] + 1
                             back_tracking[c] = -1
-                r = 0
-                c += 1
 
-            solution = board
-            solutions.append(solution)
-            r += 1
-            c -= 1
+                if hasSolution:
+                    r = 0
+                    c += 1
 
+            if hasSolution:
+                solution = []
+                for e in board:
+                    solution.append( "".join(e))
 
-def isValid(c, r, board):
-    for i in range(c, -1, -1):
-        if board[i][r] == 'Q':
-            return False
+                print('\n', solution)
+                solutions.append(solution)
+                c = n - 1
+                board[c][back_tracking[c]] = '.'
+                r = back_tracking[c] + 1
+                back_tracking[c] = -1
 
-    i = c
-    j = r
-    while i >= 0 and j >= 0:
-        if board[i][j] == 'Q':
-            return False
-        i -= 1
-        j -= 1
-
-    i = c
-    j = r
-    while i >= 0 and j < len(board[0]):
-        print("i", i, "j", j)
-        if board[i][j] == 'Q':
-            return False
-        i -= 1
-        j += 1
-
-    return True
+        return solutions
 
 if __name__ == '__main__':
     solution = Solution()
-    solution.solveNQueens(4)
+    result = solution.solveNQueens(20)
