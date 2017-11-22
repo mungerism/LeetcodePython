@@ -25,27 +25,14 @@ There exist two distinct solutions to the 4-queens puzzle:
 
 class Solution:
 
-
-    def isValid(self, c, r, board):
-        for i in range(c, -1, -1):
-            if board[i][r] == 'Q':
+    def is_valid(self, column, row, queue_record):
+        r_left = row
+        r_right = row
+        for c in range(column, -1, -1):
+            if queue_record[c] == row or queue_record[c] == r_left or queue_record[c] == r_right:
                 return False
-
-        i = c
-        j = r
-        while i >= 0 and j >= 0:
-            if board[i][j] == 'Q':
-                return False
-            i -= 1
-            j -= 1
-
-        i = c
-        j = r
-        while i >= 0 and j < len(board[0]):
-            if board[i][j] == 'Q':
-                return False
-            i -= 1
-            j += 1
+            r_left -= 1
+            r_right += 1
 
         return True
 
@@ -56,54 +43,52 @@ class Solution:
         """
 
         board = [['.' for x in range(n)] for y in range(n)]
-        back_tracking = [-1 for x in range(n)]
+        queue_record = [-1 for x in range(n)]
         solutions = []
 
         c = 0
         r = 0
-        hasSolution = True
-
-        while hasSolution:
+        has_solution = True
+        while has_solution:
 
             while c < n and c > -1:
 
-                while r < n or back_tracking[c] == -1:
+                while r < n or queue_record[c] == -1:
 
-                    if  r < n and self.isValid(c, r, board):
+                    if  r < n and self.is_valid(c, r, queue_record):
                         board[c][r] = 'Q'
-                        back_tracking[c] = r
+                        queue_record[c] = r
                         break
                     else:
                         r += 1
                         if r >= n:
                             c = c - 1
 
-                            if c == -1:
-                                hasSolution = False
+                            if c < 0:
+                                has_solution = False
                                 break
 
-                            board[c][back_tracking[c]] = '.'
-                            r = back_tracking[c] + 1
-                            back_tracking[c] = -1
+                            board[c][queue_record[c]] = '.'
+                            r = queue_record[c] + 1
+                            queue_record[c] = -1
 
-                if hasSolution:
+                if has_solution:
                     r = 0
                     c += 1
 
-            if hasSolution:
+            if has_solution:
                 solution = []
                 for e in board:
                     solution.append( "".join(e))
 
-                print('\n', solution)
                 solutions.append(solution)
                 c = n - 1
-                board[c][back_tracking[c]] = '.'
-                r = back_tracking[c] + 1
-                back_tracking[c] = -1
+                board[c][queue_record[c]] = '.'
+                r = queue_record[c] + 1
+                queue_record[c] = -1
 
         return solutions
 
 if __name__ == '__main__':
     solution = Solution()
-    result = solution.solveNQueens(20)
+    result = solution.solveNQueens(4)
