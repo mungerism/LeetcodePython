@@ -38,7 +38,7 @@ class Solution:
 
 if __name__ == '__main__':
     solution = Solution()
-    print solution.lengthOfLongestSubstring('abcabcbb')
+    print (solution.lengthOfLongestSubstring('abcabcbb'))
     
 """
 class Solution(object):
