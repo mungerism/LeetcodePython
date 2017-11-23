@@ -23,8 +23,10 @@ There exist two distinct solutions to the 4-queens puzzle:
 ]
 """
 
+
 class Solution:
 
+    # 判断同一列和同一斜线上是否存在 Queue
     def is_valid(self, row, column, queue_record):
         c_left = column
         c_right = column
@@ -41,7 +43,9 @@ class Solution:
         :rtype: List[List[str]]
         """
 
-        board = [['.' for x in range(n)] for y in range(n)]
+        chess_board = [['.' for x in range(n)] for y in range(n)]
+
+        # 初始化为 - 1，表示当前行还未放 Queue
         queue_record = [-1 for x in range(n)]
         solutions = []
 
@@ -50,24 +54,25 @@ class Solution:
         has_solution = True
         while has_solution:
 
-            while row < n and row > -1:
+            while row in range(n):
 
                 while column < n or queue_record[row] == -1:
 
-                    if  column < n and self.is_valid(row, column, queue_record):
-                        board[row][column] = 'Q'
+                    if column < n and self.is_valid(row, column, queue_record):
+                        chess_board[row][column] = 'Q'
                         queue_record[row] = column
                         break
                     else:
                         column += 1
-                        if column >= n:
-                            row = row - 1
 
+                        if column >= n:
+                            # 当前行无法放置 Queue 开始回溯
+                            row = row - 1
                             if row < 0:
                                 has_solution = False
                                 break
 
-                            board[row][queue_record[row]] = '.'
+                            chess_board[row][queue_record[row]] = '.'
                             column = queue_record[row] + 1
                             queue_record[row] = -1
 
@@ -77,15 +82,18 @@ class Solution:
 
             if has_solution:
                 solution = []
-                for e in board:
-                    solution.append( "".join(e))
+                for e in chess_board:
+                    solution.append("".join(e))
                 solutions.append(solution)
+
+                # 回溯
                 row -= 1
-                board[row][queue_record[row]] = '.'
+                chess_board[row][queue_record[row]] = '.'
                 column = queue_record[row] + 1
                 queue_record[row] = -1
 
         return solutions
+
 
 if __name__ == '__main__':
     solution = Solution()
