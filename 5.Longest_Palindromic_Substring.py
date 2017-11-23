@@ -54,4 +54,4 @@ class Solution(object):
 
 if __name__ == '__main__':
     solution = Solution()
-    print solution.longestPalindrome('sweaa')
+    print (solution.longestPalindrome('sweaa'))
