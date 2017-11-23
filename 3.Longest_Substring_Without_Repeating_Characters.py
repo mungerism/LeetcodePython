@@ -20,9 +20,10 @@ class Solution:
         left = 0
         right = 0
         dic = {}
+        sub_len = 0
         while right < len(s):
             right_value = s[right]
-            if dic.has_key(right_value) and dic[right_value] >= left:
+            if right_value in dic and dic[right_value] >= left:
                 sub_len = right - left
                 max_len = max(max_len, sub_len)
                 left = dic[right_value] + 1
@@ -36,9 +37,11 @@ class Solution:
 
         return max(max_len, sub_len)
 
+
 if __name__ == '__main__':
+
     solution = Solution()
-    print (solution.lengthOfLongestSubstring('abcabcbb'))
+    print(solution.lengthOfLongestSubstring('abcabcbb'))
     
 """
 class Solution(object):
