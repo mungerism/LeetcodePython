@@ -76,5 +76,5 @@ class Solution:
 
 if __name__ == '__main__':
     solution = Solution()
-    result = solution.totalNQueens(20)
+    result = solution.totalNQueens(4)
     print(result)
