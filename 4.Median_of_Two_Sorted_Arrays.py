@@ -30,6 +30,8 @@ class Solution:
         j = 0
         len_num1 = len(nums1)
         len_num2 = len(nums2)
+
+        # 合并数组
         while i < len_num1 or j < len_num2:
 
             if i < len_num1 and j < len_num2:
@@ -48,6 +50,7 @@ class Solution:
                     j += 1
 
         len_merged = len(merged)
+        # 判断长度奇偶性再求中值
         if len_merged % 2 == 0:
             return (merged[len_merged//2 - 1] + merged[len_merged//2]) / 2
         else:
