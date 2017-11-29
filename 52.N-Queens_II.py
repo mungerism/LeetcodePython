@@ -28,7 +28,7 @@ class Solution:
         chess_board = [['.' for x in range(n)] for y in range(n)]
 
         # 初始化为 - 1，表示当前行还未放 Queue
-        queue_record = [-1 for x in range(n)]
+        queen_record = [-1 for x in range(n)]
         solutions = []
 
         row = 0
@@ -38,11 +38,11 @@ class Solution:
 
             while row in range(n):
 
-                while column < n or queue_record[row] == -1:
+                while column < n or queen_record[row] == -1:
 
-                    if column < n and self.is_valid(row, column, queue_record):
+                    if column < n and self.is_valid(row, column, queen_record):
                         chess_board[row][column] = 'Q'
-                        queue_record[row] = column
+                        queen_record[row] = column
                         break
                     else:
                         column += 1
@@ -54,9 +54,9 @@ class Solution:
                                 has_solution = False
                                 break
 
-                            chess_board[row][queue_record[row]] = '.'
-                            column = queue_record[row] + 1
-                            queue_record[row] = -1
+                            chess_board[row][queen_record[row]] = '.'
+                            column = queen_record[row] + 1
+                            queen_record[row] = -1
 
                 if has_solution:
                     column = 0
@@ -67,9 +67,9 @@ class Solution:
 
                 # 回溯
                 row -= 1
-                chess_board[row][queue_record[row]] = '.'
-                column = queue_record[row] + 1
-                queue_record[row] = -1
+                chess_board[row][queen_record[row]] = '.'
+                column = queen_record[row] + 1
+                queen_record[row] = -1
 
         return len(solutions)
 
