@@ -10,11 +10,11 @@ Now, instead outputting board configurations, return the total number of distinc
 class Solution:
 
     # 判断同一列和同一斜线上是否存在 Queue
-    def is_valid(self, row, column, queue_record):
+    def is_valid(self, row, column, queen_record):
         c_left = column
         c_right = column
         for r in range(row, -1, -1):
-            if queue_record[r] == column or queue_record[r] == c_left or queue_record[r] == c_right:
+            if queen_record[r] == column or queen_record[r] == c_left or queen_record[r] == c_right:
                 return False
             c_left -= 1
             c_right += 1
