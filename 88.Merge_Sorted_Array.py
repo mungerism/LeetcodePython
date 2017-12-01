@@ -17,24 +17,34 @@ class Solution(object):
         :type n: int
         :rtype: void Do not return anything, modify nums1 in-place instead.
         """
-        i = 0
-        j = 0
-        while i < m or j < n:
 
-            if nums1[i] < nums2[j]:
-                i += 1
+        # 从后往前比较两个数组的元素
+
+        merged = m + n - 1
+        m = m - 1
+        n = n - 1
+
+        while m >= 0 and n >= 0:
+            if nums1[m] > nums2[n]:
+                nums1[merged] = nums1[m]
+                m -= 1
             else:
-                temp = nums1[i]
-                nums1[i] = nums2[j]
-                nums2[j] = temp
-                i += 1
-            pass
+                nums1[merged] = nums2[n]
+                n -= 1
+            merged -= 1
+
+        if m < 0:
+            nums1[:n + 1] = nums2[:n + 1]
+
 
 
 if __name__ == '__main__':
    solution = Solution()
-   nums1 = [0, 3, 4]
-   nums2 = [1, 2, 5]
+   nums1 = [1, 2, 3, 0, 0, 0]
+
+   nums2 = [2, 5, 6]
+
    solution.merge(nums1, 3, nums2, 3)
+   pass
 
 
