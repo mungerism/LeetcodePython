@@ -60,4 +60,3 @@ if __name__ == '__main__':
 
     solution = Solution()
     head = solution.mergeTwoLists(node1_0, node2_0)
-    pass
