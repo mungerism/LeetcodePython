@@ -37,11 +37,9 @@ class Solution(object):
             nums1[:n + 1] = nums2[:n + 1]
 
 
-
 if __name__ == '__main__':
    solution = Solution()
    nums1 = [1, 2, 3, 0, 0, 0]
    nums2 = [2, 5, 6]
    solution.merge(nums1, 3, nums2, 3)
-
 
