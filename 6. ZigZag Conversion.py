@@ -1,6 +1,4 @@
-"""
-6. ZigZag Conversion
-
+'''
 The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
 
 P   A   H   N
@@ -11,7 +9,8 @@ Write the code that will take a string and make this conversion given a number o
 
 string convert(string text, int nRows);
 convert("PAYPALISHIRING", 3) should return "PAHNAPLSIIGYIR".
-"""
+'''
+
 
 class Solution:
     def convert(self, s, numRows):
@@ -20,19 +19,34 @@ class Solution:
         :type numRows: int
         :rtype: str
         """
+        if numRows == 1:
+            return s
 
-        matrix = [[x for x in range(numRows)] for x in range(numRows)]
+        dic = {}
+        for i in range(numRows):
+            dic[i] = []
 
-        i = 0
-        while i < len(s):
-            for row in range(numRows):
-                for column in range(numRows):
-                    matrix[row][column] = s[i]
-                    i += 1
+        j = 0
+        a = 1
+        for c in s:
+            list = dic[j]
+            list.append(c)
+            j += a
+            if j >= numRows:
+                j -= 2
+                a *= -1
+            if j < 0:
+                j += 2
+                a *= -1
+
+        result = ''
+        for i in range(numRows):
+            result = result + ''.join(dic[i])
+
+        return result
 
 
 if __name__ == '__main__':
     solution = Solution()
-    solution.convert('abcdefghijklmn', 3)
-
+    print(solution.convert("PAYPALISHIRING", 3))
 
