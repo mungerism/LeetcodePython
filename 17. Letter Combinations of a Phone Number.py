@@ -15,16 +15,7 @@ Although the above answer is in lexicographical order, your answer could be in a
 class Solution:
 
     def combine(self, letters_1, letters_2):
-        result = []
-        if len(letters_1) == 0 | len(letters_2) == 0:
-            return result
-
-        for letter_1 in letters_1:
-            for letter_2 in letters_2:
-                letter = letter_1 + letter_2
-                result.append(letter)
-
-        return result
+        return [i + j for i in letters_1 for j in letters_2]
 
 
     def letterCombinations(self, digits: 'str') -> 'List[str]':
