@@ -46,10 +46,10 @@ class Solution:
 
             candidate = self.candidates[i]
 
-            if remainder - candidate < 0:
+            if remainder < candidate:
                 return
 
-            if remainder - candidate == 0:
+            if remainder == candidate:
                 result = stack.copy()
                 result.append(candidate)
                 self.results.append(result)
