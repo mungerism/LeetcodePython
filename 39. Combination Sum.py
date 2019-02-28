@@ -41,18 +41,18 @@ class Solution:
         return self.results
 
     def dfs(self, remainder, stack, index):
-        if remainder == 0:
-            self.results.append(stack.copy())
-            return
-
-        if remainder < 0:
-            return
 
         for i in range(index, len(self.candidates)):
 
             candidate = self.candidates[i]
 
-            if candidate > remainder:
+            if remainder - candidate < 0:
+                return
+
+            if remainder - candidate == 0:
+                result = stack.copy()
+                result.append(candidate)
+                self.results.append(result)
                 return
 
             remainder -= candidate

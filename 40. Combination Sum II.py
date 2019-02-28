@@ -47,9 +47,6 @@ class Solution:
             self.results.append(stack.copy())
             return
 
-        if remainder < 0:
-            return
-
         for i in range(index, len(self.candidates)):
 
             candidate = self.candidates[i]
@@ -61,6 +58,7 @@ class Solution:
                 continue
 
             remainder -= candidate
+
             stack.append(candidate)
 
             self.dfs(remainder, stack, i + 1)
