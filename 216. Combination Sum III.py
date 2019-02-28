@@ -22,7 +22,6 @@ class Solution:
     def combinationSum3(self, k: int, n: int):
 
         self.candidates = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-        self.current_depth = 0
         self.depth_limit = k
         self.results = []
 
