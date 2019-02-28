@@ -28,37 +28,43 @@ A solution set is:
 ]
 """
 
+
 class Solution:
-	def combinationSum(self, candidates, target: int):
-		self.results = []
-		self.candidates = candidates
-		self.target = target
-		self.candidates.sort()
-		
-		self.dfs(target, [], 0)
-		return self.results
 
-	def dfs(self, remainder, temp, index):
-		if remainder == 0:
-			self.results.append(temp.copy())
-			return
+    def combinationSum(self, candidates, target: int):
+        self.results = []
+        self.candidates = candidates
+        self.target = target
+        self.candidates.sort()
 
-		if remainder < 0:
-			return
+        self.dfs(target, [], 0)
 
-		for i in range(index, len(self.candidates)):
-			candidate = self.candidates[i]
-			
-			if candidate > self.target:
-				return
-			
-			remainder -= candidate
-			temp.append(candidate)
-			self.dfs(remainder, temp, i)
-			remainder += candidate
-			temp.pop()
+        return self.results
+
+    def dfs(self, remainder, stack, index):
+        if remainder == 0:
+            self.results.append(stack.copy())
+            return
+
+        if remainder < 0:
+            return
+
+        for i in range(index, len(self.candidates)):
+
+            candidate = self.candidates[i]
+
+            if candidate > self.target:
+                return
+
+            remainder -= candidate
+            stack.append(candidate)
+
+            self.dfs(remainder, stack, i)
+
+            stack.pop()
+            remainder += candidate
 
 
 if __name__ == '__main__':
-	solution = Solution()
-	print((solution.combinationSum([3, 2, 6, 7, 8, 9], 7)))
+    solution = Solution()
+    print((solution.combinationSum([3, 2, 6, 7, 8, 9], 7)))
