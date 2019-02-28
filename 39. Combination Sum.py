@@ -53,7 +53,7 @@ class Solution:
 
             candidate = self.candidates[i]
 
-            if candidate > self.target:
+            if candidate > remainder:
                 return
 
             remainder -= candidate
