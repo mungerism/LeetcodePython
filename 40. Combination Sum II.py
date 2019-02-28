@@ -58,7 +58,7 @@ class Solution:
             if candidate > remainder:
                 return
 
-            if self.last_candidate == candidate:
+            if candidate == self.last_candidate:
                 continue
 
             remainder -= candidate
