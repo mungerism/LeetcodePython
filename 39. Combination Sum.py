@@ -34,7 +34,6 @@ class Solution:
     def combinationSum(self, candidates, target: int):
         self.results = []
         self.candidates = candidates
-        self.target = target
         self.candidates.sort()
 
         self.dfs(target, [], 0)

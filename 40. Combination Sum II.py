@@ -34,7 +34,6 @@ class Solution:
     def combinationSum2(self, candidates, target: int):
         self.candidates = candidates
         self.candidates.sort()
-        self.target = target
         self.results = []
         stack = []
         self.last_candidate = None
