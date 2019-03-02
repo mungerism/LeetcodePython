@@ -23,42 +23,22 @@ Therefore the output is 7.
 
 """
 
-
 class Solution:
-    def combinationSum4(self, nums, target: int):
+	def combinationSum4(self, nums, target: int):
 
-        self.nums = nums
-        self.nums.sort()
-        self.results = []
-
-        self.dfs(target, [])
-
-        return len(self.results)
-
-    def dfs(self, remainder, stack):
-
-        for i in range(0, len(self.nums)):
-
-            num = self.nums[i]
-
-            if remainder == num:
-                result = stack.copy()
-                result.append(num)
-                self.results.append(result)
-                return
-
-            if remainder < num:
-                return
-
-            remainder -= num
-            stack.append(num)
-
-            self.dfs(remainder, stack)
-            stack.pop()
-            remainder += num
+		dp=[1]
+		
+		for sub_target in range(1, target + 1):
+			sum = 0
+			for num in nums:
+					target_solved = sub_target - num
+					if target_solved >= 0:
+						sum += dp[target_solved]
+			dp.append(sum)
+		
+		return dp[target]
 
 
 if __name__ == '__main__':
-    solution = Solution()
-    print(solution.combinationSum4([3, 2, 1], 4))
-    print(solution.results)
+	solution = Solution()
+	print(solution.combinationSum4([1, 2, 3], 6))
