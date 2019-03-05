@@ -23,22 +23,23 @@ Therefore the output is 7.
 
 """
 
-class Solution:
-	def combinationSum4(self, nums, target: int):
 
-		dp=[1]
-		
-		for sub_target in range(1, target + 1):
-			sum = 0
-			for num in nums:
-					target_solved = sub_target - num
-					if target_solved >= 0:
-						sum += dp[target_solved]
-			dp.append(sum)
-		
-		return dp[target]
+class Solution:
+    def combinationSum4(self, nums, target: int):
+
+        dp = [1]
+
+        for sub_target in range(1, target + 1):
+            sum = 0
+            for num in nums:
+                target_solved = sub_target - num
+                if target_solved >= 0:
+                    sum += dp[target_solved]
+            dp.append(sum)
+
+        return dp[target]
 
 
 if __name__ == '__main__':
-	solution = Solution()
-	print(solution.combinationSum4([1, 2, 3], 6))
+    solution = Solution()
+    print(solution.combinationSum4([1, 2, 3], 6))

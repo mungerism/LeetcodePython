@@ -23,12 +23,15 @@ Note: Recursive solution is trivial, could you do it iteratively?
   3     4     5    6
 """
 
+
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, x):
         self.val = x
         self.left = None
         self.right = None
+
+
 class Solution:
     def preorderTraversal(self, root):
         """
@@ -53,7 +56,8 @@ class Solution:
                     current_node = current_node.right
                 else:
                     current_node = None
-        return  result
+        return result
+
 
 if __name__ == '__main__':
     root = TreeNode(0)
