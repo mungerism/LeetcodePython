@@ -16,7 +16,7 @@ You may assume k is always valid, 1 ≤ k ≤ array's length.
 """
 
 
-class Solution(object):
+class Solution:
 
     def quick_sort(self, start, end, arr):
 
