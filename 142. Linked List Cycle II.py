@@ -34,20 +34,20 @@ class ListNode(object):
         self.val = x
         self.next = None
 
+
+"""
+使用快慢指针
+"""
+
+
 class Solution(object):
     def meet(self, slow, fast):
-        i = 0
-        while fast:
-            fast = fast.next
+        while fast and fast.next:
+            fast = fast.next.next
             slow = slow.next
-            i += 1
-            if fast:
-                fast = fast.next
-            else:
-                return None
-
             if fast == slow:
-                return i, fast
+                return fast
+        return None
 
     def detectCycle(self, head):
         """
@@ -56,10 +56,14 @@ class Solution(object):
         """
         slow = head
         fast = head
-        index, fast = self.meet(slow, fast)
-        if index:
-            index, fast = self.meet(slow, fast)
-        return index
+        fast = self.meet(slow, fast)
+        if fast:
+            while fast != slow:
+                fast = fast.next
+                slow = slow.next
+            return slow
+        else:
+            return None
 
 if __name__ == '__main__':
     node1 = ListNode(1)
@@ -70,7 +74,7 @@ if __name__ == '__main__':
     node1.next = node2
     node2.next = node3
     node3.next = node4
-    node4.next = node2
+    node4.next = node1
 
     solution = Solution()
     print(solution.detectCycle(node1))
