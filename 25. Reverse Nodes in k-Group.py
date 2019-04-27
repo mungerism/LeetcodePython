@@ -97,7 +97,7 @@ if __name__ == '__main__':
 
     solution = Solution()
     head = solution.reverseKGroup(node6, 2)
-    solution.traverse(head)
+    # solution.traverse(head)
 
 
 
