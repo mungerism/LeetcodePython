@@ -39,7 +39,6 @@ class MyStack:
         """
         self.queue.append(x)
 
-
     def pop(self) -> int:
         """
         Removes the element on top of the stack and returns that element.
@@ -47,8 +46,6 @@ class MyStack:
         for i in range(len(self.queue) - 1):
             self.queue.append(self.queue.popleft())
         return self.queue.popleft()
-
-
 
     def top(self) -> int:
         """
@@ -60,16 +57,15 @@ class MyStack:
         self.queue.append(result)
         return result
 
-
     def empty(self) -> bool:
         """
         Returns whether the stack is empty.
         """
         return len(self.queue) is 0
 
-if __name__ == '__main__':
 
-# Your MyStack object will be instantiated and called as such:
+if __name__ == '__main__':
+    # Your MyStack object will be instantiated and called as such:
     obj = MyStack()
     obj.push(1)
     obj.push(2)
