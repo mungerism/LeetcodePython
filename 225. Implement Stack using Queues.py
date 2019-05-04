@@ -1,58 +1,78 @@
 """
 225. Implement Stack using Queues
 
-Given two strings S and T, return if they are equal when both are typed into empty text editors. # means a backspace character.
+Implement the following operations of a stack using queues.
 
-Example 1:
+push(x) -- Push element x onto stack.
+pop() -- Removes the element on top of the stack.
+top() -- Get the top element.
+empty() -- Return whether the stack is empty.
+Example:
 
-Input: S = "ab#c", T = "ad#c"
-Output: true
-Explanation: Both S and T become "ac".
-Example 2:
+MyStack stack = new MyStack();
 
-Input: S = "ab##", T = "c#d#"
-Output: true
-Explanation: Both S and T become "".
-Example 3:
+stack.push(1);
+stack.push(2);
+stack.top();   // returns 2
+stack.pop();   // returns 2
+stack.empty(); // returns false
+Notes:
 
-Input: S = "a##c", T = "#a#c"
-Output: true
-Explanation: Both S and T become "c".
-Example 4:
-
-Input: S = "a#c", T = "b"
-Output: false
-Explanation: S becomes "c" while T becomes "b".
-Note:
-
-1 <= S.length <= 200
-1 <= T.length <= 200
-S and T only contain lowercase letters and '#' characters.
-Follow up:
-
-Can you solve it in O(N) time and O(1) space?
+You must use only standard operations of a queue -- which means only push to back, peek/pop from front, size, and is empty operations are valid.
+Depending on your language, queue may not be supported natively. You may simulate a queue by using a list or deque (double-ended queue), as long as you use only standard operations of a queue.
+You may assume that all operations are valid (for example, no pop or top operations will be called on an empty stack).
 """
+import collections
 
 
-class Solution:
-    def backspaceCompare(self, S: str, T: str) -> bool:
-        S_str = self.backspace(S)
-        T_str = self.backspace(T)
-        print(S_str)
-        print(T_str)
-        return S_str == T_str
+class MyStack:
 
-    def backspace(self, S):
-        queue_s = []
-        for s in S:
-            if s == '#':
-                if queue_s:
-                    queue_s.pop()
-            else:
-                queue_s.append(s)
-        return ''.join(queue_s)
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.queue = collections.deque([])
 
+    def push(self, x: int) -> None:
+        """
+        Push element x onto stack.
+        """
+        self.queue.append(x)
+
+
+    def pop(self) -> int:
+        """
+        Removes the element on top of the stack and returns that element.
+        """
+        for i in range(len(self.queue) - 1):
+            self.queue.append(self.queue.popleft())
+        return self.queue.popleft()
+
+
+
+    def top(self) -> int:
+        """
+        Get the top element.
+        """
+        for i in range(len(self.queue) - 1):
+            self.queue.append(self.queue.popleft())
+        result = self.queue.popleft()
+        self.queue.append(result)
+        return result
+
+
+    def empty(self) -> bool:
+        """
+        Returns whether the stack is empty.
+        """
+        return len(self.queue) is 0
 
 if __name__ == '__main__':
-    solution = Solution()
-    print(solution.backspaceCompare("ab#b", "#ad#b"))
+
+# Your MyStack object will be instantiated and called as such:
+    obj = MyStack()
+    obj.push(1)
+    obj.push(2)
+    param_2 = obj.pop()
+    param_3 = obj.top()
+    param_4 = obj.empty()
