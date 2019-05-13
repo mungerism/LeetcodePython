@@ -39,13 +39,23 @@ p and q are different and both values will exist in the binary tree.
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        self.recurseTree(root, p, q)
 
     def recurseTree(self, root, p, q):
-        if root == null:
-            return False
+        if root is None:
+            return root
 
         if root.val == p or root.val == q:
-            return True
+            return root
 
+        left = self.recurseTree(root.left, p, q)
+        right = self.recurseTree(root.right, p, q)
 
+        if left and right or not left and not right:
+            return root
+        else:
+            if left:
+                return left
+            else:
+                return right
 
