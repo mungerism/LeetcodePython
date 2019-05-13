@@ -31,31 +31,61 @@ p and q are different and both values will exist in the binary tree.
 
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        self.recurseTree(root, p, q)
+        return self.recurseTree(root, p, q)
 
     def recurseTree(self, root, p, q):
         if root is None:
             return root
 
-        if root.val == p or root.val == q:
+        if root.val == p.val or root.val == q.val:
             return root
 
         left = self.recurseTree(root.left, p, q)
         right = self.recurseTree(root.right, p, q)
 
-        if left and right or not left and not right:
+        if left and right:
             return root
         else:
             if left:
                 return left
             else:
-                return right
+                if right:
+                    return right
+                else:
+                    return None
 
+
+if __name__ == '__main__':
+    root = TreeNode(3)
+
+    # Input: root = [3, 5, 1, 6, 2, 0, 8, null, null, 7, 4], p = 5, q = 1
+
+    node1 = TreeNode(5)
+    node2 = TreeNode(1)
+    node3 = TreeNode(6)
+    node4 = TreeNode(2)
+    node5 = TreeNode(0)
+    node6 = TreeNode(8)
+    node7 = TreeNode(7)
+    node8 = TreeNode(4)
+
+    root.left = node1
+    root.right = node2
+    node1.left = node3
+    node1.right = node4
+    node4.left = node7
+    node4.right = node8
+    node2.left = node5
+    node2.right = node6
+
+    solution = Solution()
+    print(solution.lowestCommonAncestor(root, node1, node8).val)
