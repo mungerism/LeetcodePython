@@ -54,4 +54,7 @@ The given board size is always 9x9.
 
 
 class Solution:
-    def isValidSudoku(self, board: List[List[str]]) -> bool:
+    def isValidSudoku(self, board) -> bool:
+
+
+    def isValidPosition(self, i, j, board):
