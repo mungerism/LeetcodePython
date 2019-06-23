@@ -56,5 +56,27 @@ The given board size is always 9x9.
 class Solution:
     def isValidSudoku(self, board) -> bool:
 
+        for i in range(9):
+            for j in range(9):
+                if board[i][j] == '.':
+                    for val in range(1, 10):
+                        if self.isValidPosition(i, j, board, val):
+                            board[i][j] = str(val)
+                            if self.isValidSudoku(board):
+                                return True
+                            else:
+                                board[i][j] = '.'
+                    return False
 
-    def isValidPosition(self, i, j, board):
+    def isValidPosition(self, row, col, board, val):
+        for i in range(9):
+            if board[row][i] != '.' and board[row][i] == val:
+                return False
+
+            if board[i][col] != '.' and board[i][col] == val:
+                return False
+
+            if board[3 * (row // 3) + i // 3][3 * (col // 3) + i % 3] != '.' and  board[3 * (row // 3) + i // 3][3 * (col // 3) + i % 3] == val:
+                return False
+
+        return True
