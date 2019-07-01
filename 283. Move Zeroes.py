@@ -3,26 +3,32 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        z = 0
-        for i in range(len(nums)):
-            if nums[i] == 0:
-                j = i
-                z = z + 1
-                n = 1
-                while j < len(nums) - z:
 
-                    while 
+        """
+        双指针, 指针 i 指向 0, 指针 j 指向非 0 数字
+        """
+        i = 0
+        #找到第一个 0
+        while i < len(nums) and nums[i] != 0:
+            i += 1
 
-                    nums[j] = nums[j + 1]
-                    j = j + 1
+        #开始寻找 0 后面的非 0 数字, 插入到 0 所在的位置
+        j = i + 1
 
-        for m in range(-1, -(z + 1), -1):
-            print(m)
-            nums[m] = 0
+        while j < len(nums):
+            if nums[j] != 0:
+                nums[i] = nums[j]
+                i += 1
+            j += 1
+
+        while i < len(nums):
+            nums[i] = 0
+            i += 1
+
 
 
 if __name__ == '__main__':
-    nums = [0]
+    nums = [0, 1, 5, 0, 3, 0]
 
     solution = Solution()
     solution.moveZeroes(nums)
