@@ -14,6 +14,8 @@ Example 2:
 Input: [2,2,1,1,1,2,2]
 Output: 2
 """
+
+
 class Solution:
     def majorityElement(self, nums) -> int:
         map = {}
@@ -31,6 +33,7 @@ class Solution:
                 majority_key = key
 
         return majority_key
+
 
 if __name__ == '__main__':
     nums = [1]
