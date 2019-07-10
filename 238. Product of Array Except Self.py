@@ -18,8 +18,19 @@ class Solution:
         res = []
         res.append(1)
 
-        for i in range(2, len(nums)):
-            res.append(nums[i] * res[i - 1])
+        for i in range(1, len(nums)):
+            res.append(nums[i - 1] * res[i - 1])
 
-        for i in reversed(range(1, len(nums) - 2)):
-            res[i] = nums[i] * nums[i + 1]
+        print(res)
+
+        last_right_product = 1
+        for i in reversed(range(len(nums) - 1)):
+            res[i] = res[i] * nums[i + 1] * last_right_product
+            last_right_product = last_right_product * nums[i + 1]
+
+        return res
+
+
+if __name__ == '__main__':
+    solution = Solution()
+    print(solution.productExceptSelf(nums=[1, 2, 3, 4]))
