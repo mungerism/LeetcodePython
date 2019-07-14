@@ -21,24 +21,26 @@ Your function should return length = 5, with the first five elements of nums bei
 It doesn't matter what values are set beyond the returned length
 """
 
+
 class Solution:
     def removeDuplicates(self, nums) -> int:
-    	
-    	if len(nums) == 0:
-    		return 0
-    	
-    	left = 0
-    	
-    	for right in range(len(nums)):
-    		if nums[right] != nums[left]:
-    			left += 1
-    			nums[left], nums[right] = nums[right], nums[left]
-    			
-    	return left + 1
+
+        if len(nums) == 0:
+            return 0
+
+        left = 0
+
+        for right in range(len(nums)):
+            if nums[right] != nums[left]:
+                left += 1
+                nums[left], nums[right] = nums[right], nums[left]
+
+        return left + 1
+
 
 if __name__ == '__main__':
-	solution = Solution()
-	#nums = [0,0,1,1,1,2,2,3,3,4]
-	nums = []
-	print(solution.removeDuplicates(nums))
-	print(nums)
+    solution = Solution()
+    # nums = [0,0,1,1,1,2,2,3,3,4]
+    nums = []
+    print(solution.removeDuplicates(nums))
+    print(nums)
