@@ -33,7 +33,6 @@ class Solution:
         target_index = 0
 
         while left < right:
-            print(left, right)
 
             if nums[mid] == target:
                 target_index = mid
