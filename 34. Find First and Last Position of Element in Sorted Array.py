@@ -25,26 +25,25 @@ class Solution:
             return [-1, -1]
 
         left = 0
-        right = len(nums)
+        right = len(nums) - 1
         mid = int((left + right) / 2)
 
         first = -1
         last = -1
         target_index = 0
 
-        while left < right:
+        # 二分查找
+        while left <= right:
 
             if nums[mid] == target:
                 target_index = mid
                 break
             else:
-                if nums[mid] > target:
-                    right = mid
+                if target < nums[mid]:
+                    right = mid - 1  # 注意区间
                 else:
-                    left = mid
+                    left = mid + 1
                 mid = int((left + right) / 2)
-                if mid == left or mid == right:
-                    break
 
         if nums[target_index] == target:
             first = target_index
@@ -61,4 +60,4 @@ class Solution:
 
 if __name__ == '__main__':
     solution = Solution()
-    print(solution.searchRange([5, 7, 7, 8, 8, 10], 6))
+    print(solution.searchRange([2, 2], 3))
