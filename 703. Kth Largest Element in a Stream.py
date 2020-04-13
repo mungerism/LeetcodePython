@@ -37,7 +37,7 @@ class KthLargest:
         else:
             min_value = self.q.queue[0]
             if val > min_value:
-                self.q.get()
+                self.q.get()  # 取出并移除第一个元素（最小）
                 self.q.put(val)
                 return self.q.queue[0]
             else:
