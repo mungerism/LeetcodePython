@@ -27,6 +27,9 @@ Explanation: The LCA of nodes 2 and 4 is 2, since a node can be a descendant of 
 #         self.left = None
 #         self.right = None
 
+# 最近公共父节点的特征：p 和 q 在公共父节点的左右两边
+#
+
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         return self.recurseTree(root, p, q)
